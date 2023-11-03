@@ -17,8 +17,8 @@ export default function ModifyRequiredProduct(){
   
 
   const submitModifyDataOfProduct=handleSubmit(async(data)=>{
-    const code = data.code; // Obtén el código del formulario
-    const findProductToModify = query.data.find((e) => e.codigo === code);
+    const code = data.code; // Obtén el código del producto solicitado
+    const findProductToModify = query.data.find((e) => e.codigo === code); //buscar el primer producto que coincidad con el codigo
     let dataForm={
         "nombre": data.name,
         "imagen": "https://www.bebiendoestrellas.com.ar/productos/aperitivo-americano-gancia-950-ml/",
@@ -27,7 +27,7 @@ export default function ModifyRequiredProduct(){
         "cantidad": data.amount,
         "margen": data.margin,
     }
-    if (findProductToModify) {
+    if (findProductToModify) { //Si el producto existe ejecuto el codigo
       
         // Realiza la solicitud PATCH con los datos y el ID del producto
         mutate( {dataForm, idProduct:findProductToModify.id},{ //Como acepta un solo parametro de varibles, se debe desestructurar en la funcion que envia el patch tambien
@@ -38,8 +38,7 @@ export default function ModifyRequiredProduct(){
                 console.error('Error al intentar modificar el producto:', error);
               },
         } );
-        
-        reset()
+        reset() //Limpio el formulario
     } else {
       console.log('No se encuentra el producto');
     }

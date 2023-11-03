@@ -328,3 +328,8 @@ th, td {
   color: tomato;
   font-size: small;
 }
+.logo_app{
+  width: fit-content;
+  height: fit-content;
+  margin-right: 15px;
+}

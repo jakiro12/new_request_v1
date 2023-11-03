@@ -26,14 +26,13 @@ export default function CreateNewProduct(){
     mutate(dataForm, {
       onSuccess: () => {
         console.log('Producto creado exitosamente');
-        // Realiza acciones adicionales después de una solicitud exitosa
+        reset() //Limpiar Formulario
       },
       onError: (error) => {
         console.error('Error al intentar crear el producto:', error);
         // Maneja el error aquí si es necesario
       },
     });
-    reset()
   })
 
   

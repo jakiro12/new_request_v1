@@ -11,7 +11,7 @@ export default function FindRequiredProduct(){
 
     const navigate = useNavigate(); 
 
-    const query =queryGetData(`${1}`)
+    const query =queryGetData(`${1}`) //Traigo todos los productos de la tienda con el id: 1
 
     const currentAmountInStock=()=>{
         let sum = 0
@@ -19,7 +19,7 @@ export default function FindRequiredProduct(){
         for (let i = 0; i < resValues.length; i++) {
             sum += resValues[i].valor;
           }
-        return Number(sum)
+        return Number(sum) //Retorno la suma de todos los precios 
     }
 
     const handleSelectChange=(e)=>{
@@ -28,7 +28,7 @@ export default function FindRequiredProduct(){
     }
     const filteredData = selectedOption === "all"
     ? query.data
-    : query.data.sort((a, b) => a.id - b.id).filter((item) => item.id === Number(selectedOption));
+    : query.data.sort((a, b) => a.id - b.id).filter((item) => item.id === Number(selectedOption)); //Ordeno y filtro los datos
     return(
         <div className='find_product_displayed'>
           <NavBar/>

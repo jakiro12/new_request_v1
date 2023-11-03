@@ -6,30 +6,17 @@ const getAllCurrentProducts=async (storeId)=>{
     return res.json()
 }
 
-const getSelectecProductDetails=async({queryKey})=>{
-    const res= await fetch(`${URL}/api/v1/productos/1/${queryKey[1]}`)
-    return res.json()
-}
+
 
 export const queryGetData=(storeNumber) =>{
     const query =useQuery(
     ['products'],
   ()=>getAllCurrentProducts(storeNumber),
     {
-        refetchOnWindowFocus:false,
-        staleTime:30000
+        refetchOnWindowFocus:false, //Evito que se refresque la peticion cada vez que ingreso nuevamente al navegador
+        staleTime:30000 //Se refresca la peticion cada 30 segundos
     }
 )
-return query
+return query //Retorno la query para utilizar la informacion necesaria cuando muestro productos
 }
 
-export const queryGetProductData=(productNumber)=>{
-    const queryProduct=useQuery(
-        ['selectProduct',productNumber],
-        getSelectecProductDetails,
-        {
-            refetchOnWindowFocus:false
-        }
-    )
-    return queryProduct
-}
